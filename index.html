@@ -76,12 +76,30 @@
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-alt"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
                 <a href="https://anonymous.4open.science/r/dice-rl-pre-release-6D81/README.md"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Anonymous Code</span>
+                  <span>Simulation Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Real Robot Code</span>
                 </a>
               </span>
             </div>
@@ -126,14 +144,20 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered section-title">Real Robot Results</h2>
 
-    <div class="content has-text-justified">
+    <!-- <div class="content has-text-justified">
       <p>
         We evaluate DICE-RL on a challenging real-world Belt Assembly task from the NIST benchmark. The BC policy pretrained with 265 demos has three dominant failure modes. After 420 online episodes, DICE-RL reliably succeeds on this contact-rich task. 
         We overlay a representative rollout with running change in action entropy (\(\Delta H\)) and value improvement (\(\Delta V\)), with the largest entropy drop and value gains occurring around critical contact transitions. 
       </p>
-    </div>
+    </div> -->
 
     <h3 class="title is-4 has-text-centered">Belt Assembly</h3>
+
+    <!-- <div class="content has-text-justified">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </div> -->
 
     <div class="has-text-centered" style="margin: 20px 0;">
       <img alt="real robot results" src="media/RL-realword-updated-belt.svg" style="width: 100%; max-width: 100%;">
@@ -164,13 +188,19 @@
 
     <h3 class="title is-4 has-text-centered">Light Bulb Insertion</h3>
 
+    <!-- <div class="content has-text-justified">
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      </p>
+    </div> -->
+
     <div class="has-text-centered" style="margin: 20px 0;">
       <img alt="real robot results" src="media/RL-realword-updated-lightbulb.svg" style="width: 100%; max-width: 100%;">
     </div>
 
     <div class="content has-text-centered" style="margin: 20px 0;">
       <p>
-        On the Light Bulb Insertion task, DICE-RL improves the pretrained policy from <strong>56.67%</strong> to <strong>90%</strong> success rate over 30 runs. 
+        On the Light Bulb Insertion task, DICE-RL improves the pretrained policy from <strong>56.67%</strong> to <strong>90%</strong> success rate.
       </p>
     </div>
 
@@ -191,7 +221,13 @@
       </div>
     </div>
 
-   <h3 class="title is-4 has-text-centered">Gear Insertion</h3>
+    <h3 class="title is-4 has-text-centered">Gear Insertion</h3>
+
+    <!-- <div class="content has-text-justified">
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa.
+      </p>
+    </div> -->
 
     <div class="has-text-centered" style="margin: 20px 0;">
       <img alt="real robot results" src="media/RL-realword-updated-gear.svg" style="width: 100%; max-width: 100%;">
@@ -199,7 +235,7 @@
 
     <div class="content has-text-centered" style="margin: 20px 0;">
       <p>
-        On the Gear Insertion task, DICE-RL improves the pretrained policy from <strong>46.67%</strong> to <strong>90%</strong> success rate over 30 runs.
+        On the Gear Insertion task, DICE-RL improves the pretrained policy from <strong>46.67%</strong> to <strong>90%</strong> success rate.
       </p>
     </div>
 
@@ -280,7 +316,7 @@
     <h4 class="title is-5 has-text-centered subsubsection-title">Contraction and Robustness</h4>
     <div class="content has-text-justified">
       <p>
-        Distribution sharpening is a state-local effect. Contraction, in contrast, is a trajectory-level property of the closed-loop dynamics induced by a policy: over a task-relevant region and in a chosen metric, trajectories initialized from nearby states move closer over time, reflecting reduced sensitivity to initial conditions. This notion is closely related to incremental stability and connects to robust-control ''funnel'' or trajectory-tube intuitions, where stability of a tube around nominal behavior implies improved robustness to perturbations.
+        Distribution sharpening is a state-local effect. Contraction, in contrast, is a trajectory-level property of the closed-loop dynamics induced by a policy: over a task-relevant region and in a chosen metric, trajectories initialized from nearby states move closer over time, indicating reduced sensitivity to initial conditions. 
       </p>
       <p>
         To probe contraction empirically, we sample many pairs of nearby anchor states \((s_0,s'_0)\) from the offline demonstrations \(D_{\text{demo}}\). From each pair, we rollout (i) the fine-tuned RL policy for \(T\) steps to obtain \(\{s_t^{\text{RL}}\}_{t=0}^T\) and \(\{s_t^{\prime\,\text{RL}}\}_{t=0}^T\), (ii) the pretrained BC policy for \(T\) steps to obtain \(\{s_t^{\text{Pre}}\}_{t=0}^T\) and \(\{s_t^{\prime\,\text{Pre}}\}_{t=0}^T\), and (iii) the corresponding expert trajectories of length \(T\) starting from the same anchors, denoted \(\{s_t^{\text{E}}\}_{t=0}^T\) and \(\{s_t^{\prime\,\text{E}}\}_{t=0}^T\). We then measure the normalized pairwise divergence for each rollout type \(x\in\{\text{RL},\text{Pre},\text{E}\}\):
