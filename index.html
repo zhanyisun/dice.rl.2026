@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From Prior to Pro</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito" type='text/css'>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    .prior-color {
+      color: #A7CEE2;
+    }
+    .pro-color {
+      color: #5B4BA8;
+    }
+    .highlight-orange {
+      color: #ED7B61;
+      font-weight: bold;
+    }
+    .tldr-highlight {
+      color: #5B4BA8;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .tldr-acronym {
+      color: #5B4BA8;
+      font-weight: bold;
+    }
+    .section-title {
+      color: #5B4BA8;
+      border-bottom: 3px solid #5B4BA8;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    .subsection-title {
+      color: #333;
+      border-bottom: 2px solid #A7CEE2;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      margin-top: 40px;
+    }
+    .subsubsection-title {
+      color: #666;
+      font-style: italic;
+      margin-bottom: 15px;
+      margin-top: 30px;
+    }
+    .custom-blue-box {
+      border: 3px solid #A7CEE2;
+      padding: 3%;
+      background-color: #A7CEE220;
+      border-radius: 10px;
+      outline: none;
+      padding-bottom: 3%;
+      margin: 2% 0% 2% 0%;
+    }
+  </style>
+</head>
+
+<body>
+<section class="hero">
+  <div class="hero-body" style="padding-bottom: 0;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">
+            From <span class="prior-color">Prior</span> to <span class="pro-color">Pro</span>:<br>
+            <span style="font-size: 0.8em;">Efficient Skill Mastering via Distribution Contractive RL Finetuning</span>
+          </h1>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://anonymous.4open.science/r/dice-rl-pre-release-6D81/README.md"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Anonymous Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="hero-body" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 0%;">
+      <picture style="width: 48%; max-width: 100%; margin-top: 30px;">
+        <img alt="teaser figure" src="media/RL-Finetuning-teaser.svg">
+      </picture>
+      <picture style="width: 48%; max-width: 100%;">
+        <img alt="main results bar plot" src="media/main_results_bar_plot.svg">
+      </picture>
+    </div>
+  </div>
+  <div class="column">
+    <div class="container is-max-desktop has-text-centered">
+      <div class="custom-blue-box">
+        <h2 class="title is-2" style="color: #A7CEE2;">TL;DR</h2>
+        <div class="columns">
+          <div class="column">
+            <div class="content has-text-justified">
+              <p class="is-size-6">
+                We introduce <span class="tldr-highlight">Di</span>stribution <span class="tldr-highlight">C</span>ontractiv<span class="tldr-highlight">e</span> <span class="tldr-highlight">R</span>einforcement <span class="tldr-highlight">L</span>earning (<span class="tldr-acronym">DICE-RL</span>), a framework that uses reinforcement learning (RL) as a "distribution contractor" to refine pretrained generative robot policies. <span class="tldr-acronym">DICE-RL</span> turns a <span class="highlight-orange">pretrained behavior prior</span> into a <span class="highlight-orange">high-performing "pro" policy</span> by amplifying high-success behaviors from online feedback. We pretrain a diffusion-based policy for broad behavioral coverage, then finetune it with a stable, sample-efficient residual off-policy RL framework that combines selective behavior regularization with value-guided action selection. Extensive experiments and analyses show that <span class="tldr-acronym">DICE-RL</span> reliably improves performance with strong stability and sample efficiency, enabling mastery of complex long-horizon manipulation skills both in simulation and on a real robot.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Real Robot Results -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered section-title">Real Robot Results</h2>
+
+    <div class="content has-text-justified">
+      <p>
+        We evaluate DICE-RL on a challenging real-world Belt Assembly task from the NIST benchmark. The BC policy pretrained with 265 demos has three dominant failure modes. After 420 online episodes, DICE-RL reliably succeeds on this contact-rich task. 
+        We overlay a representative rollout with running change in action entropy (\(\Delta H\)) and value improvement (\(\Delta V\)), with the largest entropy drop and value gains occurring around critical contact transitions. 
+      </p>
+    </div>
+
+    <h3 class="title is-4 has-text-centered">Belt Assembly</h3>
+
+    <div class="has-text-centered" style="margin: 20px 0;">
+      <img alt="real robot results" src="media/RL-realword-updated-belt.svg" style="width: 100%; max-width: 100%;">
+    </div>
+
+    <div class="content has-text-centered" style="margin: 20px 0;">
+      <p>
+        On the Belt Assembly task, DICE-RL improves the pretrained policy from <strong>56.67%</strong> to <strong>93.33%</strong> success rate over 30 runs. See our <strong>uncut</strong> evaluation video (10x).
+      </p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2%;">
+      <div style="width: 48%; text-align: center;">
+        <video controls autoplay loop muted style="width: 100%;">
+          <source src="media/baseline_cropped_10x_counter.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="is-size-6" style="margin-top: 10px; font-weight: bold;">Pretrained BC Policy (x10)</p>
+      </div>
+      <div style="width: 48%; text-align: center;">
+        <video controls autoplay loop muted style="width: 100%;">
+          <source src="media/ours_cropped_10x_counter.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="is-size-6" style="margin-top: 10px; font-weight: bold;">Finetuned RL Policy (x10)</p>
+      </div>
+    </div>
+
+    <h3 class="title is-4 has-text-centered">Light Bulb Insertion</h3>
+
+    <div class="has-text-centered" style="margin: 20px 0;">
+      <img alt="real robot results" src="media/RL-realword-updated-lightbulb.svg" style="width: 100%; max-width: 100%;">
+    </div>
+
+    <div class="content has-text-centered" style="margin: 20px 0;">
+      <p>
+        On the Light Bulb Insertion task, DICE-RL improves the pretrained policy from <strong>56.67%</strong> to <strong>90%</strong> success rate over 30 runs. 
+      </p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2%;">
+      <div style="width: 48%; text-align: center;">
+        <video controls autoplay loop muted style="width: 100%;">
+          <source src="media/baseline_lightbulb_cropped_10x_counter.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="is-size-6" style="margin-top: 10px; font-weight: bold;">Pretrained BC Policy (x10)</p>
+      </div>
+      <div style="width: 48%; text-align: center;">
+        <video controls autoplay loop muted style="width: 100%;">
+          <source src="media/ours_lightbulb_cropped_10x_counter.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="is-size-6" style="margin-top: 10px; font-weight: bold;">Finetuned RL Policy (x10)</p>
+      </div>
+    </div>
+
+   <h3 class="title is-4 has-text-centered">Gear Insertion</h3>
+
+    <div class="has-text-centered" style="margin: 20px 0;">
+      <img alt="real robot results" src="media/RL-realword-updated-gear.svg" style="width: 100%; max-width: 100%;">
+    </div>
+
+    <div class="content has-text-centered" style="margin: 20px 0;">
+      <p>
+        On the Gear Insertion task, DICE-RL improves the pretrained policy from <strong>46.67%</strong> to <strong>90%</strong> success rate over 30 runs.
+      </p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2%;">
+      <div style="width: 48%; text-align: center;">
+        <video controls autoplay loop muted style="width: 100%;">
+          <source src="media/baseline_gear_cropped_10x_counter.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="is-size-6" style="margin-top: 10px; font-weight: bold;">Pretrained BC Policy (x10)</p>
+      </div>
+      <div style="width: 48%; text-align: center;">
+        <video controls autoplay loop muted style="width: 100%;">
+          <source src="media/ours_gear_cropped_10x_counter.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="is-size-6" style="margin-top: 10px; font-weight: bold;">Finetuned RL Policy (x10)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 1: Simulation Results & Analyses -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered section-title">Simulation Results & Analyses</h2>
+
+    <!-- Subsection: Main Results -->
+    <h3 class="title is-4 has-text-centered subsection-title">Main Results</h3>
+
+    <div class="content has-text-justified">
+      <p>
+        We compare DICE-RL against prior methods, focusing on approaches that build on pretrained diffusion-based policies. 
+        We benchmark on Can, Square, Transport,Tool Hang tasks from the Robomimic benchmark, and report results for both state-based and pixel-based observations. 
+        For Can, the BC policies are trained on <strong>20</strong> demonstrations; while other tasks using <strong>50</strong> demonstrations from Proficient-Human (PH) dataset.
+      </p>
+    </div>
+
+    <div class="has-text-centered" style="margin: 20px 0;">
+      <img alt="main results 2x4" src="media/main_results_2x4.svg" style="width: 100%; max-width: 100%;">
+      <img alt="main results legend" src="media/main_results_legend.svg" style="width: 80%; max-width: 100%; margin-top: 10px;">
+    </div>
+
+    <div class="content has-text-justified">
+      <p>
+        DICE-RL attains the highest final performance while also being more stable and sample efficient across all tasks, and it succeeds across all difficulty levels with a single training recipe. 
+      </p>
+    </div>
+
+    <!-- Subsection: Understanding DICE-RL -->
+    <h3 class="title is-4 has-text-centered subsection-title">Understanding DICE-RL</h3>
+
+    <!-- Subsubsection: Distribution Sharpening -->
+    <h4 class="title is-5 has-text-centered subsubsection-title">Distribution Sharpening</h4>
+
+    <div class="content has-text-justified">
+      <p>
+        Our finetuning objective combines critic value maximization with a BC-style residual penalty. As training progresses, this shifts probability mass away from low-value action samples and toward consistently high-value regions, yielding a sharper action distribution at visited states.
+      </p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2%;">
+      <div style="width: 48%; text-align: center;">
+        <img alt="value entropy correlation scatter" src="media/value_entropy_corr_2d_scatter.svg" style="width: 100%; margin-top: 25px;">
+        <p class="is-size-6" style="margin-top: 10px;">
+          Using states from the offline demonstrations as anchors, we sample actions from the finetuned policy and compute (i) value gain relative to the pretrained BC policy and (ii) the empirical entropy drop of the sampled actions. We find a clear coupling: states with larger value improvements exhibit larger entropy drops, suggesting that successful finetuning coincides with stronger distributional concentration.
+        </p>
+      </div>
+      <div style="width: 48%; text-align: center;">
+        <img alt="value improve entropy reduction" src="media/analysis2-value-improve-entropy-reduction.drawio.svg" style="width: 100%;">
+        <p class="is-size-6" style="margin-top: 10px;">
+          In a representative rollout trajectory of the RL policy on Tool Hang, together with the running change in action entropy (\(\Delta H\)) and value improvement (\(\Delta V\)). We zoom in on frames where value improvement spikes and action entropy drops; these states are often critical for task success (e.g., pre-insertion and insertion). In contrast, during free-space motions that are less consequential for success, we observe less reduction in action entropy
+        </p>
+      </div>
+    </div>
+
+    <!-- Subsubsection: Contraction and Robustness -->
+    <h4 class="title is-5 has-text-centered subsubsection-title">Contraction and Robustness</h4>
+    <div class="content has-text-justified">
+      <p>
+        Distribution sharpening is a state-local effect. Contraction, in contrast, is a trajectory-level property of the closed-loop dynamics induced by a policy: over a task-relevant region and in a chosen metric, trajectories initialized from nearby states move closer over time, reflecting reduced sensitivity to initial conditions. This notion is closely related to incremental stability and connects to robust-control ''funnel'' or trajectory-tube intuitions, where stability of a tube around nominal behavior implies improved robustness to perturbations.
+      </p>
+      <p>
+        To probe contraction empirically, we sample many pairs of nearby anchor states \((s_0,s'_0)\) from the offline demonstrations \(D_{\text{demo}}\). From each pair, we rollout (i) the fine-tuned RL policy for \(T\) steps to obtain \(\{s_t^{\text{RL}}\}_{t=0}^T\) and \(\{s_t^{\prime\,\text{RL}}\}_{t=0}^T\), (ii) the pretrained BC policy for \(T\) steps to obtain \(\{s_t^{\text{Pre}}\}_{t=0}^T\) and \(\{s_t^{\prime\,\text{Pre}}\}_{t=0}^T\), and (iii) the corresponding expert trajectories of length \(T\) starting from the same anchors, denoted \(\{s_t^{\text{E}}\}_{t=0}^T\) and \(\{s_t^{\prime\,\text{E}}\}_{t=0}^T\). We then measure the normalized pairwise divergence for each rollout type \(x\in\{\text{RL},\text{Pre},\text{E}\}\):
+        \[
+        c^{x}(t)\;=\;\frac{\big\|s_t^{x}-s_t^{\prime\,x}\big\|_2^2}{\big\|s_0-s'_0\big\|_2^2}
+        \]
+        Rollouts under our RL policy exhibit a more stable (and typically smaller) evolution of \(c(t)\) than both the pretrained BC policy and the expert demonstration rollouts, indicating stronger contraction of the closed-loop behavior.
+      </p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2%;">
+      <div style="width: 48%; text-align: center;">
+        <img alt="value entropy correlation scatter" src="media/contraction_comparison_standalone.svg" style="width: 100%;">
+      </div>
+      <div style="width: 48%; text-align: center;">
+        <img alt="value improve entropy reduction" src="media/robustness_under_perturbation.svg" style="width: 100%;">
+      </div>
+    </div>
+
+    <h5 class="title is-6 has-text-centered" style="margin-top: 30px; color: #888;">Rollout Distribution Visualization (Tool Hang)</h5>
+
+    <div class="content has-text-justified">
+      <p>
+        We overlay the rollouts from the finetuned RL policy <span style="display: inline-block; width: 12px; height: 12px; background-color: rgb(254,205,121); vertical-align: middle; margin: 0 3px;"></span> with the demonstration trajectories <span style="display: inline-block; width: 12px; height: 12px; background-color: rgb(106,156,222); vertical-align: middle; margin: 0 3px;"></span>. The RL policy contracts around critical, contact-rich states. 
+      </p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2%;">
+      <div style="width: 48%; text-align: center;">
+        <video controls autoplay loop muted style="width: 100%;">
+          <source src="media/tool_hang_demo_vs_rl_rollout.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div style="width: 48%; text-align: center;">
+        <img alt="tool hang visualization" src="media/tool_hang_vis.gif" style="width: 80%; margin-top: 30px;">
+      </div>
+    </div>
+
+    <h5 class="title is-6 has-text-centered" style="margin-top: 30px; color: #888;">Rollout Distribution Visualization (Transport)</h5>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2%;">
+      <div style="width: 48%; text-align: center;">
+        <video controls autoplay loop muted style="width: 100%;">
+          <source src="media/transport_demo_vs_rl_rollout.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div style="width: 48%; text-align: center;">
+        <img alt="transport visualization" src="media/transport_vis.gif" style="width: 80%; margin-top: 30px;">
+      </div>
+    </div>
+
+    <!-- Subsection: What makes a pretrained policy easy to finetune? -->
+    <!-- <h3 class="title is-4 has-text-centered subsection-title">What makes a pretrained policy easy to finetune?</h3> -->
+
+  </div>
+</section>
+
+</body>
+</html>
