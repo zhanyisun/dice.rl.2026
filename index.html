@@ -85,7 +85,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://anonymous.4open.science/r/dice-rl-pre-release-6D81/README.md"
+                <a href="#"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -129,7 +129,7 @@
           <div class="column">
             <div class="content has-text-justified">
               <p class="is-size-6">
-                We introduce <span class="tldr-highlight">Di</span>stribution <span class="tldr-highlight">C</span>ontractiv<span class="tldr-highlight">e</span> <span class="tldr-highlight">R</span>einforcement <span class="tldr-highlight">L</span>earning (<span class="tldr-acronym">DICE-RL</span>), a framework that uses reinforcement learning (RL) as a "distribution contractor" to refine pretrained generative robot policies. <span class="tldr-acronym">DICE-RL</span> turns a <span class="highlight-orange">pretrained behavior prior</span> into a <span class="highlight-orange">high-performing "pro" policy</span> by amplifying high-success behaviors from online feedback. We pretrain a diffusion-based policy for broad behavioral coverage, then finetune it with a stable, sample-efficient residual off-policy RL framework that combines selective behavior regularization with value-guided action selection. Extensive experiments and analyses show that <span class="tldr-acronym">DICE-RL</span> reliably improves performance with strong stability and sample efficiency, enabling mastery of complex long-horizon manipulation skills both in simulation and on a real robot.
+                We introduce <span class="tldr-highlight">Di</span>stribution <span class="tldr-highlight">C</span>ontractiv<span class="tldr-highlight">e</span> <span class="tldr-highlight">R</span>einforcement <span class="tldr-highlight">L</span>earning (<span class="tldr-acronym">DICE-RL</span>), a framework that uses reinforcement learning (RL) as a "distribution contraction" operator to refine pretrained generative robot policies. <span class="tldr-acronym">DICE-RL</span> turns a <span class="highlight-orange">pretrained behavior prior</span> into a <span class="highlight-orange">high-performing "pro" policy</span> by amplifying high-success behaviors from online feedback. We pretrain a diffusion-based policy for broad behavioral coverage, then finetune it with a stable, sample-efficient residual off-policy RL framework that combines selective behavior regularization with value-guided action selection. Extensive experiments and analyses show that <span class="tldr-acronym">DICE-RL</span> reliably improves performance with strong stability and sample efficiency, enabling mastery of complex long-horizon manipulation skills both in simulation and on a real robot.
               </p>
             </div>
           </div>
@@ -144,12 +144,17 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered section-title">Real Robot Results</h2>
 
-    <!-- <div class="content has-text-justified">
+    <div class="content has-text-justified">
       <p>
-        We evaluate DICE-RL on a challenging real-world Belt Assembly task from the NIST benchmark. The BC policy pretrained with 265 demos has three dominant failure modes. After 420 online episodes, DICE-RL reliably succeeds on this contact-rich task. 
-        We overlay a representative rollout with running change in action entropy (\(\Delta H\)) and value improvement (\(\Delta V\)), with the largest entropy drop and value gains occurring around critical contact transitions. 
+  We evaluate RL policy checkpoints at fixed training intervals using 30 trials per checkpoint.
+  For <code>GearInsertion</code> and <code>LightBulbInsertion</code> tasks, we keep the target
+  object poses fixed and randomize the robot end-effector’s initial pose within a small
+  range (approximately &plusmn;2 cm in position and &plusmn;10&deg; about each of the three
+  rotation axes). For <code>BeltAssembly</code>, in addition to randomizing the robot’s
+  initial pose, we also randomize the assembly board position within approximately
+  &plusmn;10 cm and its planar orientation within approximately &plusmn;15&deg;.  
       </p>
-    </div> -->
+    </div>
 
     <h3 class="title is-4 has-text-centered">Belt Assembly</h3>
 
